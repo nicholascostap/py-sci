@@ -14,8 +14,8 @@ class Table:
 if __name__ == "__main__":
     
     values = {
-        "path" : f"{os.getcwd()}\\import\\",
-        "file" : "fipezap-serieshistoricas.xlsx"
+        "path" : f"{os.getcwd()}\\py-sci\\import\\",
+        "file" : "tabelaPooFormatada.xlsx"
     }
 
     table = Table(values)
