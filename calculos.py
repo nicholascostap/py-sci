@@ -1,5 +1,5 @@
 import pandas as pd
-from script import Table
+from script import Sheet
 import os
 
 class Calculos:
@@ -24,11 +24,11 @@ class Calculos:
 if __name__ == "__main__":
     
     values = {
-        "path" : f"{os.getcwd()}\\py-sci\\import\\",
-        "file" : "tabelaPooFormatada.xlsx"
+        "path" : f"{os.getcwd()}\\import\\",
+        "file" : "tabelaPooFormatadaIndice.xlsx"
     }
 
-    table = Table(values)
+    table = Sheet(values)
     df = table.read()
     
     calculos =  Calculos(df)

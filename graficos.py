@@ -8,7 +8,7 @@ class Graficos:
     def __init__(self, tabela):
         self.dataFrame = tabela
 
-    def graficoExemplo(self):
+    def indiceTempo(self):
         x = self.dataFrame["Data"]
         y = self.dataFrame["Total"]
 
@@ -23,11 +23,18 @@ class Graficos:
         plt.tight_layout()
         grafico = plt.show()
         return grafico
+    
+    def getBoxplot(self):
+        x = self.dataFrame['Total']
+        plt.boxplot(x,showfliers=True,flierprops=dict(marker='o',markersize=8,markerfacecolor='r'))
+        grafico = plt.show()
+        return grafico
+    
 
 if __name__ == "__main__":
     
     values = {
-        "path" : f"{os.getcwd()}\\py-sci\\import\\",
+        "path" : f"{os.getcwd()}\\import\\",
         "file" : "tabelaPooFormatadaIndice.xlsx"
     }
 
@@ -35,4 +42,9 @@ if __name__ == "__main__":
     df = table.read()
 
     grafico = Graficos(df)
-    grafico.graficoExemplo()
+    # grafico.indiceTempo()
+    grafico.getBoxplot()
+
+# Média: 112.9511072633688
+# Mediana: 129.17996490168514
+# Desvio Padrao: 32.59049518238816
