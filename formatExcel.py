@@ -10,7 +10,7 @@ class FormatExcel:
     
     def formatarExcel(self):
         # Lendo arquivo excel
-        tabela = pd.read_excel(f"{os.getcwd()}\\py-sci\\{self.caminho}")
+        tabela = pd.read_excel(f"{os.getcwd()}\\{self.caminho}")
 
         # convertendo para data a coluna Data
         datas = pd.to_datetime(tabela["Data"])
@@ -25,10 +25,11 @@ class FormatExcel:
             tabela = tabela.drop_duplicates(subset=["Data"], keep="first")
             
         # salvando em um arquivo excel a nova planilha
-        tabela.to_excel(f"{os.getcwd()}\\py-sci\\import\\tabelaPooFormatada.xlsx",index=False)
+        tabela.to_excel(f"{os.getcwd()}\\import\\tabelaPooFormatadaIndice.xlsx",index=False)
         # print(tabela["Total"])
 
 
-caminho = f"import\\dadosfipzap.xlsx"
+caminho = f"import\\projetoPOO.xlsx"
+print(os.getcwd()+'\\'+caminho)
 formatarTabela = FormatExcel(caminho)
 formatarTabela.formatarExcel()
