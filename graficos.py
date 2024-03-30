@@ -34,12 +34,26 @@ class Graficos:
         plt.boxplot(x,showfliers=True,flierprops=dict(marker='o',markersize=8,markerfacecolor='red'))
         grafico = plt.show()
         return grafico
-    
 
+    def distribuicao_normal(self):
+        x = self.dataFrame['Total']
+        plt.hist(x, bins=10, edgecolor='black', color='skyblue')
+
+        for spine in plt.gca().spines.values():
+            spine.set_edgecolor('white')
+            
+        plt.gca().tick_params(axis='y', colors='white')
+        plt.gca().tick_params(axis='x', colors='white')
+        plt.gcf().set_facecolor('black')
+        plt.gca().set_facecolor('black')
+
+        grafico = plt.show()
+        return grafico
+    
 if __name__ == "__main__":
     
     values = {
-        "path" : f"{os.getcwd()}\\py-sci\\import\\",
+        "path" : f"{os.getcwd()}\\import\\",
         "file" : "tabelaPooFormatadaIndice.xlsx"
     }
 
@@ -50,3 +64,4 @@ if __name__ == "__main__":
     grafico.graficoExemplo()
     grafico.indiceTempo()
     grafico.getBoxplot()
+    grafico.distribuicao_normal()
