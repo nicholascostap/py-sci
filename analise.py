@@ -30,4 +30,5 @@ if __name__ == "__main__":
     df = table.read()
     
     calculos =  AnaliseInicial(df)
-    calculos.tipoColunas()
+    print(f'Qtd Elementos: {calculos.qtdElementos()}')
+    print(f'Colunas e Tipos: {calculos.tipoColunas()}')

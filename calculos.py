@@ -24,7 +24,7 @@ class Calculos:
 if __name__ == "__main__":
     
     values = {
-        "path" : f"{os.getcwd()}\\import\\",
+        "path" : f"{os.getcwd()}\\py-sci\\import\\",
         "file" : "tabelaPooFormatadaIndice.xlsx"
     }
 
@@ -35,15 +35,3 @@ if __name__ == "__main__":
     print(f"Média: {calculos.media()}")
     print(f"Mediana: {calculos.mediana()}")
     print(f"Desvio Padrao: {calculos.desvioPadrao()}")
-
-
-# 200.094395635249
-# count    194.000000
-# mean     177.048416
-# std       54.928471
-# min       61.589493
-# 25%      139.967985
-# 50%      200.094396
-# 75%      212.908177
-# max      253.487580
-# Name: Total, dtype: float64
