@@ -1,5 +1,6 @@
 import pandas as pd
 from script import Sheet
+from script import Sheet
 import os
 
 class Calculos:
@@ -37,6 +38,7 @@ if __name__ == "__main__":
         "file" : "tabelaPooFormatadaIndice.xlsx"
     }
 
+    table = Sheet(values)
     table = Sheet(values)
     df = table.read()
     
