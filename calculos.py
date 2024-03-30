@@ -1,5 +1,5 @@
 import pandas as pd
-from script import Table
+from script import Sheet
 import os
 
 class Calculos:
@@ -20,22 +20,31 @@ class Calculos:
     def desvioPadrao(self):
         dpTotal = self.tabela["Total"].std()
         return dpTotal
+    
+    def quartis(self):
+        values_total = self.tabela.sort_values(by="Total")
+        quartis = values_total.describe(percentiles=[.25, .5, .75]).loc[['25%', '50%', '75%']]
+        q1 = quartis.loc['25%'].iloc[0]
+        q2 = quartis.loc['50%'].iloc[0]
+        q3 = quartis.loc['75%'].iloc[0]
+        quartis_string = f"Q1 = {q1}, Q2 = {q2}, Q3 = {q3}"
+        return quartis_string
 
 if __name__ == "__main__":
     
     values = {
-        "path" : f"{os.getcwd()}\\py-sci\\import\\",
-        "file" : "tabelaPooFormatada.xlsx"
+        "path" : f"{os.getcwd()}/import/",
+        "file" : "tabelaPooFormatadaIndice.xlsx"
     }
 
-    table = Table(values)
+    table = Sheet(values)
     df = table.read()
     
     calculos =  Calculos(df)
     print(f"Média: {calculos.media()}")
     print(f"Mediana: {calculos.mediana()}")
     print(f"Desvio Padrao: {calculos.desvioPadrao()}")
-
+    print(f"Quartis: {calculos.quartis()}")
 
 # 200.094395635249
 # count    194.000000
