@@ -4,17 +4,28 @@ from datetime import datetime
 from planilha import Planilha
 
 class Calculo:
-    """Classe para cálculos estatísticos."""
+    """Classe contendo os cálculos e resultados estatísticos
+    da tabela FipeZap processada na planilha.\n
+    Args:
+        `tabela` (pd.DataFrame): Tabela com os dados a serem calculados.
+    Attributes:
+        `_media` (float): Média dos valores da coluna.
+        `_mediana` (float): Mediana dos valores da coluna.
+        `_desvio_padrao` (float): Desvio padrão dos valores da coluna.
+        `_coeficiente_variacao` (float): Coeficiente de variação dos valores da coluna.
+        `_quartis` (dict): Dicionário com os valores dos quartis.
+    """
+    
     def __init__(self, tabela: pd.DataFrame):
         self.tabela: pd.DataFrame = tabela
-        self._media: float = 0
-        self._mediana: float = 0
-        self._desvio_padrao: float = 0
-        self._coeficiente_variacao: float = 0
-        self._quartis: dict = {
-                                'q1': 0, 
-                                'q2': 0, 
-                                'q3': 0
+        self._media: float = 0.0
+        self._mediana: float = 0.0
+        self._desvio_padrao: float = 0.0
+        self._coeficiente_variacao: float = 0.0
+        self._quartis: dict[float] = {
+                                'q1': 0.0, 
+                                'q2': 0.0, 
+                                'q3': 0.0
                             }
 
     def media(self, coluna) -> float:
@@ -54,19 +65,22 @@ class Calculo:
         Args:
             `coluna` (str): Nome da coluna a ser calculada.
         Returns:
-            `coeficiente_variacao` (float): Coeficiente de variação dos valores da coluna."""
+            `coeficiente_variacao` (float): Coeficiente de variação 
+            dos valores da coluna."""
         
         coeficiente_variacao = self.tabela[coluna].std() / self.tabela[coluna].mean()
         return coeficiente_variacao
     
-    def quartis(self, coluna: str) -> tuple:
+    def quartis(self, coluna: str) -> dict:
         """Calcula os quartis dos valores da coluna.
         Args:
             `coluna` (str): Nome da coluna a ser calculada.
         Returns:
             `quartis` (dict): Dicionário com os valores dos quartis."""
+        
         valores_ordenados = self.tabela.sort_values(by=coluna)
-        quartis = valores_ordenados.describe(percentiles=[.25, .5, .75]).loc[['25%', '50%', '75%']]
+        quartis = valores_ordenados.describe(
+                        percentiles=[.25, .5, .75]).loc[['25%', '50%', '75%']]
         return {
             'q1' : quartis.loc['25%'].iloc[0],
             'q2' : quartis.loc['50%'].iloc[0],
