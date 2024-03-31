@@ -50,6 +50,7 @@ class Calculo:
         mediana = valores_ordenados[coluna].median()
         return mediana
 
+
     def desvio_padrao(self, coluna: str) -> float:
         """Calcula o desvio padrão dos valores da coluna.\n
         Args:
