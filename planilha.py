@@ -22,26 +22,35 @@ class Planilha:
             `pd.DataFrame`: Tabela lida.
         """
 
-        caminho = f"{self.caminho_origem}{self.arquivo}"
+        caminho = f"{self.caminho_origem}{self.arquivo}.xlsx"
 
         if self.aba:
-            return pd.read_excel(f"{caminho}", sheet_name=self.aba, usecols=self.colunas)
+            return pd.read_excel(caminho, 
+                             sheet_name=self.aba, 
+                             skiprows=3,
+                             usecols=self.colunas
+                            )
         
-        return pd.read_excel(f"{caminho}", usecols=self.colunas)
+        return pd.read_excel(caminho, 
+                             usecols=self.colunas
+                            )
 
     def converter_data(self, coluna : str) -> pd.Series:
-        """Converte a coluna Data para o formato YYYY-MM-DD.\n
+        """Converte a data da coluna para o formato YYYY-MM-DD.\n
+        Caso o valor da célula não seja uma data válida,\n
+        será preenchida com `NaT` (Not a Time).
         Args:
             `coluna` (str): Nome da coluna a ser convertida.
         Returns:
             `pd.Series`: Coluna convertida.
         """
 
-        return pd.to_datetime(self.tabela[coluna])
+        return pd.to_datetime(self.tabela[coluna], errors="coerce")
 
     def formatar_data_coluna(self, datas : pd.Series) -> pd.Series:
-        """Formata as datas da coluna para o 
-        formato YYYY-MM-DD.
+        """Formata as datas da coluna para o formato YYYY-MM-DD.\n
+        Caso o valor da célula não seja uma data válida,\n
+        será preenchida com `NaT` (Not a Time).
         Args:
             `datas` (pd.Series): Coluna com as datas a serem formatadas.
         Returns:
@@ -91,7 +100,7 @@ if __name__ == '__main__':
         
         parametos = {
             "caminho_origem" : f"{caminho}\\import\\",
-            "arquivo" : "fipezap-serieshistoricas.xlsx",
+            "arquivo" : "fipezap-serieshistoricas",
             "caminho_destino" : f"{caminho}\\export\\",
             "aba" : "Índice FipeZAP",
             "colunas" : ["Data", "Total"]
@@ -103,7 +112,7 @@ if __name__ == '__main__':
         planilha.exibir()
         
         datas = planilha.converter_data("Data")
-        planilha.formatar_data_coluna("Data", datas)
+        planilha.tabela["Data"] = planilha.formatar_data_coluna(datas)
 
         tem_duplicidade = planilha.validar_duplicados("Data")
         if tem_duplicidade:
