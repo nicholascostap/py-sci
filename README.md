@@ -39,3 +39,9 @@ no link abaixo:
 https://downloads.fipe.org.br/indices/fipezap/fipezap-serieshistoricas.xlsx
 
 4. Mova o arquivo para a pasta "import" do projeto.
+
+5. Execute o arquivo "planilha.py" para extrair os dados da tabela histórica da FipeZAP.
+
+6. Execute o arquivo "calculo.py" para realizar os cálculos estatísticos.
+
+7. Execute o arquivo "grafico.py" para gerar as visualizações gráficas.
