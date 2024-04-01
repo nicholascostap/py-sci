@@ -50,7 +50,6 @@ class Calculo:
         mediana = valores_ordenados[coluna].median()
         return mediana
 
-
     def desvio_padrao(self, coluna: str) -> float:
         """Calcula o desvio padrão dos valores da coluna.\n
         Args:
@@ -87,6 +86,27 @@ class Calculo:
             'q2' : quartis.loc['50%'].iloc[0],
             'q3' : quartis.loc['75%'].iloc[0]
         }
+    
+    def exibir(self) -> None:
+        """Exibe os resultados dos cálculos."""
+        
+        print(f"Média: {self._media}")
+        print(f"Mediana: {self._mediana}")
+        print(f"Desvio padrão: {self._desvio_padrao}")
+        print(f"Coeficiente de variação: {self._coeficiente_variacao}")
+        print(f"Quartis: {[f'Q{i+1}: {value}' for i, value in enumerate(self._quartis.values())]}")
+    
+    def main(self):
+        """Executa os cálculos e exibe os resultados."""
+        
+        self._media = self.media(coluna='Total')
+        self._mediana = self.mediana(coluna='Total')
+        self._desvio_padrao = self.desvio_padrao(coluna='Total')
+        self._coeficiente_variacao = self.coeficiente_variacao(coluna='Total')
+        self._quartis = self.quartis(coluna='Total')
+        self.exibir()
+
+        print("Calculos realizados com sucesso!")
 
 if __name__ == "__main__":
 
@@ -101,19 +121,8 @@ if __name__ == "__main__":
         "colunas" : ["Data", "Total"]
     }
 
-    tabela = Planilha(parametos)
-    df = tabela.ler()
+    planilha = Planilha(parametos)
+    tabela = planilha.ler()
     
-    calculos = Calculo(df)
-    
-    calculos._media = calculos.media(coluna='Total')
-    calculos._mediana = calculos.mediana(coluna='Total')
-    calculos._desvio_padrao = calculos.desvio_padrao(coluna='Total')
-    calculos._coeficiente_variacao = calculos.coeficiente_variacao(coluna='Total')
-    calculos._quartis = calculos.quartis(coluna='Total')
-
-    print(f"Média: {calculos._media}")
-    print(f"Mediana: {calculos._mediana}")
-    print(f"Desvio padrão: {calculos._desvio_padrao}")
-    print(f"Coeficiente de variação: {calculos._coeficiente_variacao}")
-    print(f"Quartis: {[f'Q{i+1}: {value}' for i, value in enumerate(calculos._quartis.values())]}")
+    calculos = Calculo(tabela)
+    calculos.main()
