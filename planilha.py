@@ -50,7 +50,7 @@ class Planilha:
                         )
 
         else:
-            caminho = f"{self.caminho_destino}{self.data_arquivo}\\{self.arquivo}-formatado.xlsx"
+            caminho = f"{self.caminho_destino}{self.data_arquivo}//{self.arquivo}-formatado.xlsx"
 
             return pd.read_excel(caminho, 
                         usecols=self.colunas
@@ -130,7 +130,7 @@ class Planilha:
         arquivo = f"{nome}.xlsx" if nome \
             else f"{self.arquivo}-formatado.xlsx"
 
-        self.tabela.to_excel(f"{caminho}\\{arquivo}", index=False)
+        self.tabela.to_excel(f"{caminho}//{arquivo}", index=False)
     
     def exibir(self) -> None:
         """Exibe a tabela."""
@@ -167,9 +167,9 @@ if __name__ == '__main__':
         caminho = os.getcwd()
         
         parametos = {
-            "caminho_origem" : f"{caminho}\\import\\",
+            "caminho_origem" : f"{caminho}//import//",
             "arquivo" : "fipezap-serieshistoricas",
-            "caminho_destino" : f"{caminho}\\export\\",
+            "caminho_destino" : f"{caminho}//export//",
             "aba" : "Índice FipeZAP",
             "colunas" : ["Data", "Total"]
         }
