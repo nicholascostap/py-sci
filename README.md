@@ -1,4 +1,6 @@
-# Projeto PySci - Tabela Histórica FipeZAP
+# PySci
+![PySci Image](./src/img/logo-py-sci.png)
+### Tabela Histórica FipeZAP
 
 Este é um projeto de Data Science que utiliza Python, Pandas e Seaborn para analisar a tabela histórica de preços de imóveis da FipeZAP.
 
