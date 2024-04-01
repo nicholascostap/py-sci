@@ -1,3 +1,4 @@
-pip install pandas==2.2.1
-pip install numpy==1.26.4
-pip install openpyxl==3.1.2
+pandas==2.2.1
+numpy==1.26.4
+openpyxl==3.1.2
+matplotlib==3.8.3
