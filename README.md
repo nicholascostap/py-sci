@@ -40,6 +40,18 @@ os dados estatistícos e gerar os gráficos.
 Esse arquivo instala as dependências necessárias para a execução e 
 irá chamar os arquivos "planilha.py", "calculo.py" e "grafico.py".
 
+5. Os resultados serão exibidos no console e os gráficos serão salvos na pasta "export". O script gera uma pasta com a data da execução, por padrão.
+Os gráficos gerados são:
+
+- Gráfico de Distribuição Normal
+- Gráfico Boxplot
+- Gráfico de Indíce x Tempo
+
+#### Observação: Importante executar o arquivo à partir do diretório raíz do projeto.
+```bash
+.\py-sci
+```
+
 ## Execução Step-by-Step
 
 ### Caso deseje executar os arquivos individualmente, siga os passos abaixo:
