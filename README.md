@@ -27,21 +27,64 @@ O objetivo deste projeto é explorar e visualizar os dados da tabela histórica 
 1. Clone este repositório:
 https://github.com/nicholascostap/py-sci.git
 
-2. Execute o Prompt de Comandos no modo Administrador e instale as dependências do projeto com os comandos abaixo:
-```bash
-cd py-sci
-cd install
-pip install -r requirements.txt
-```
-
-3. Faça o download do arquivo da tabela "fipezap-serieshistoricas.xlsx"
+2. Faça o download do arquivo da tabela "fipezap-serieshistoricas.xlsx"
 no link abaixo:
 https://downloads.fipe.org.br/indices/fipezap/fipezap-serieshistoricas.xlsx
 
-4. Mova o arquivo para a pasta "import" do projeto.
+3. Mova o arquivo para a pasta "import" do projeto.
 
-5. Execute o arquivo "planilha.py" para extrair os dados da tabela histórica da FipeZAP.
+4. Execute o arquivo "main.py" para carregar, processar os dados, calcular
+os dados estatistícos e gerar os gráficos.
+Esse arquivo instala as dependências necessárias para a execução e 
+irá chamar os arquivos "planilha.py", "calculo.py" e "grafico.py".
 
-6. Execute o arquivo "calculo.py" para realizar os cálculos estatísticos.
+## Execução Step-by-Step
 
-7. Execute o arquivo "grafico.py" para gerar as visualizações gráficas.
+### Caso deseje executar os arquivos individualmente, siga os passos abaixo:
+
+1. Execute o arquivo "planilha.py" para extrair os dados da tabela histórica da FipeZAP.
+
+2. Execute o arquivo "calculo.py" para realizar os cálculos estatísticos.
+
+3. Execute o arquivo "grafico.py" para gerar as visualizações gráficas.
+
+### Instalação de dependências
+### Caso deseje criar um ambiente virtual para instalar as dependências, siga os passos abaixo:
+
+1. Crie um ambiente virtual:
+```bash
+python -m venv venv
+```
+
+2. Ative o ambiente virtual:
+```bash
+.\venv\Scripts\activate
+```
+
+3. Instale as dependências:
+```bash
+pip install -r requirements.txt
+```
+
+## Autores
+👤 **Nicholas Costa P.**
+- Github: https://github.com/nicholascostap
+
+👤 **Gyovana Lima**
+- Github: https://github.com/glsanto-s
+
+👤 **Henrique Gil**
+- Github: https://github.com/Henrique762
+
+👤 **Rogério Lacerda**
+- Github: https://github.com/Rogerio-Lacerda
+
+👤 **Guilherme Silveira**
+- Github: https://github.com/GuiiGhost
+
+👤 **Gabrielly Venancio**
+
+## 🤝 Contribuições
+
+👤 **Cesar**
+- Orientador
