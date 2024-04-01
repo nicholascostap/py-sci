@@ -84,7 +84,7 @@ pip install -r requirements.txt
 👤 **Nicholas Costa P.**
 - Github: https://github.com/nicholascostap
 
-👤 **Gyovana Lima**
+👤 **Gyovanna Lima**
 - Github: https://github.com/glsanto-s
 
 👤 **Henrique Gil**
