@@ -22,7 +22,8 @@ O objetivo deste projeto é explorar e visualizar os dados da tabela histórica 
 
 - Python 3.x
 - Pandas
-- Seaborn
+- Matplotlib
+- NumPy
 
 ## Instalação
 
