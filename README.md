@@ -82,21 +82,22 @@ pip install -r requirements.txt
 
 ## Autores
 👤 **Nicholas Costa P.**
-- Github: https://github.com/nicholascostap
+- GitHub: https://github.com/nicholascostap
 
 👤 **Gyovanna Lima**
-- Github: https://github.com/glsanto-s
+- GitHub: https://github.com/glsanto-s
 
 👤 **Henrique Gil**
-- Github: https://github.com/Henrique762
+- GitHub: https://github.com/Henrique762
 
 👤 **Rogério Lacerda**
-- Github: https://github.com/Rogerio-Lacerda
+- GitHub: https://github.com/Rogerio-Lacerda
 
 👤 **Guilherme Silveira**
-- Github: https://github.com/GuiiGhost
+- GitHub: https://github.com/GuiiGhost
 
 👤 **Gabrielly Venancio**
+- GitHub: https://github.com/gabirelly-venancio
 
 ## 🤝 Contribuições
 
