@@ -16,7 +16,7 @@ class Grafico:
         `boxplot` (plt): Gráfico de Boxplot.
         `distribuicao_normal` (plt): Gráfico de Distribuição Normal.
     """
-    
+
     def __init__(self, tabela : pd.DataFrame):
         self.tabela : pd.DataFrame = tabela
         self.eixo_x : pd.Series = pd.Series()
@@ -62,11 +62,11 @@ class Grafico:
 
             case 'eixo_x':
                 grafico.xticks(rotation=rotacao, ha='right')
-                grafico.xticks(range(0, len(eixo), intervalo))
+                grafico.xticks(range(0, len(self.eixo_x), intervalo))
 
             case 'eixo_y':
                 grafico.yticks(rotation=rotacao, ha='right')
-                grafico.yticks(range(0, len(eixo), intervalo))
+                grafico.yticks(range(0, len(self.eixo_y), intervalo))
 
     def gerar_indice_tempo(self, intervalo : int) -> plt:
         """Gera o gráfico de Índices em relação à Tempo
@@ -79,7 +79,6 @@ class Grafico:
 
         eixo_x: pd.Series = self.eixo_x
         eixo_y: pd.Series = self.eixo_y
-
         
         indice_tempo.plot(eixo_x, eixo_y)
 
@@ -166,7 +165,7 @@ class Grafico:
         self.eixo_x = self.tabela['Data']
         self.eixo_y = self.tabela['Total']
 
-        self.indice_tempo = self.gerar_indice_tempo(intervalo=5)
+        self.indice_tempo = self.gerar_indice_tempo(intervalo=12)
         self.exportar(self.indice_tempo, 'indice-tempo')
 
         self.eixo_x = self.tabela['Total']
