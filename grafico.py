@@ -18,18 +18,19 @@ class Grafico:
     """
 
     def __init__(self, tabela : pd.DataFrame):
-        self.tabela : pd.DataFrame = tabela
-        self.eixo_x : pd.Series = pd.Series()
-        self.eixo_y : pd.Series = pd.Series()
-        self.indice_tempo : plt = plt
-        self.boxplot : plt = plt
-        self.distribuicao_normal : plt = plt
+        self.tabela: pd.DataFrame = tabela
+        self.eixo_x: pd.Series = pd.Series()
+        self.eixo_y: pd.Series = pd.Series()
+        self.indice_tempo: plt = plt
+        self.boxplot: plt = plt
+        self.distribuicao_normal: plt = plt
+        self.regressao_linear: plt = plt
 
     def definir_legendas(self, 
-        grafico : plt,
-        titulo : str,
-        eixo_x : pd.Series=None,
-        eixo_y : pd.Series=None) -> None:
+        grafico: plt,
+        titulo: str,
+        eixo_x: pd.Series=None,
+        eixo_y: pd.Series=None) -> None:
         """Define as legendas dos eixos X, Y e título do gráfico.\n
         Args:
             `grafico` (plt): Gráfico à definir as legendas.
@@ -37,8 +38,8 @@ class Grafico:
             `eixo_x` (pd.Series): Eixo X do gráfico. *Opcional
             `eixo_y` (pd.Series): Eixo Y do gráfico. *Opcional"""
         
-        tem_eixo_x : bool = eixo_x is not None
-        tem_eixo_y : bool = eixo_y is not None
+        tem_eixo_x: bool = eixo_x is not None
+        tem_eixo_y: bool = eixo_y is not None
 
         if tem_eixo_x:
             grafico.xlabel(f'X = {self.eixo_x.name}')
@@ -48,8 +49,10 @@ class Grafico:
         grafico.title(titulo)
 
     def definir_localizacao_eixo(self, 
-        grafico : plt, eixo : str,
-        rotacao : int, intervalo : int) -> None:
+        grafico: plt, 
+        eixo: str,
+        rotacao: int, 
+        intervalo: int) -> None:
         """Define a localização dos eixos do gráfico.\n
         Args:
             `grafico` (plt): Gráfico à definir a localização dos eixos.
@@ -97,9 +100,9 @@ class Grafico:
         """Gera o gráfico de Boxplot com os dados plotados 
         e retorna o gráfico gerado."""
 
-        boxplot : plt = plt
+        boxplot: plt = plt
 
-        eixo_x : pd.Series = self.eixo_x
+        eixo_x: pd.Series = self.eixo_x
 
         boxplot.boxplot(eixo_x, showfliers=True,
             flierprops={
@@ -117,8 +120,8 @@ class Grafico:
         """Gera o gráfico de Distribuição Normal
         com os dados plotados e retorna o gráfico gerado."""
 
-        distribuicao_normal : plt = plt
-        eixo_x : pd.Series = self.eixo_x
+        distribuicao_normal: plt = plt
+        eixo_x: pd.Series = self.eixo_x
 
         distribuicao_normal.hist(eixo_x, 
             bins=10, edgecolor='black', color='skyblue')
@@ -129,15 +132,61 @@ class Grafico:
                             titulo, eixo_x)
         
         return distribuicao_normal
+    
+    def gerar_regressao_linear(self) -> plt:
+        """Gera o gráfico de Regressão Linear
+        com os dados plotados e retorna o gráfico gerado."""
 
-    def exibir(self, grafico : plt) -> None:
+        regressao_linear: plt = plt
+        eixo_x: pd.Series = self.eixo_x
+        eixo_y: pd.Series = self.eixo_y
+
+        eixo_x = self.converter_datas(eixo_x)
+        eixo_y = self.converter_numeros(eixo_y)
+
+        coeficiente = np.polyfit(eixo_x, eixo_y, 1)
+        polinomio = np.poly1d(coeficiente)
+
+        regressao_linear.plot(eixo_x, polinomio(eixo_x), color='red')
+        regressao_linear.scatter(eixo_x, eixo_y)
+
+        titulo = 'Regressão Linear'
+        
+        self.definir_legendas(regressao_linear, 
+                            titulo, eixo_x, eixo_y)
+        
+        return regressao_linear
+    
+    def converter_datas(self, eixo: pd.Series) -> pd.Series:
+        """Converte os dados do eixo para o formato 'datetime'.\n
+        Args:
+            `eixo` (pd.Series): Eixo à ser convertido.
+        Returns:
+            `pd.Series`: Eixo convertido para o formato 'datetime'."""
+
+        eixo = pd.to_datetime(eixo, format='%Y-%m-%d', errors='coerce')
+        eixo = eixo.dropna()
+        return eixo
+    
+    def converter_numeros(self, eixo: pd.Series):
+        """Converte os dados do eixo para o formato 'numeric'.\n
+        Args:
+            `eixo` (pd.Series): Eixo à ser convertido.
+        Returns:
+            `pd.Series`: Eixo convertido para o formato 'numeric'."""
+
+        eixo = pd.to_numeric(eixo, errors='coerce')
+        eixo = eixo.dropna()
+        return eixo
+
+    def exibir(self, grafico: plt) -> None:
         """Exibe o gráfico gerado.
         Args:
             `grafico` (plt): Gráfico à ser exibido."""
         
         grafico.show()
 
-    def salvar(self, grafico : plt, nome : str) -> None:
+    def salvar(self, grafico: plt, nome: str) -> None:
         """Salva os gráficos gerados.
         Args:
             `grafico` (plt): Gráfico à ser salvo.
@@ -153,7 +202,7 @@ class Grafico:
         
         grafico.savefig(f"{caminho}//grafico-{nome}.png")
 
-    def exportar(self, grafico : plt, nome : str) -> str:
+    def exportar(self, grafico: plt, nome: str) -> str:
         """Salva, exibe e fecha o gráfico gerado."""
         self.salvar(grafico, nome)
         self.exibir(grafico)
@@ -177,7 +226,13 @@ class Grafico:
         self.distribuicao_normal = self.gerar_distribuicao_normal()
         self.exportar(self.distribuicao_normal, 'distribuicao-normal')
 
-        print("Gráficos gerados com sucesso!")
+        self.eixo_x = self.tabela['Data']
+        self.eixo_y = self.tabela['Total']
+
+        self.regressao_linear = self.gerar_regressao_linear()
+        self.exportar(self.regressao_linear, 'regressao-linear')
+
+        print("Gráficos gerados com sucesso!")        
         
 if __name__ == "__main__":
 
